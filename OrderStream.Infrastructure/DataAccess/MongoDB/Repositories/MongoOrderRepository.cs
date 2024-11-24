@@ -29,7 +29,6 @@ public class MongoOrderRepository : IMongoOrderRepository
     {
         var objectId = ObjectId.Parse(id);
 
-        // Ensure the order's Id is not altered
         order.Id = objectId;
 
         var filter = Builders<MongoOrder>.Filter.Eq(o => o.Id, objectId);

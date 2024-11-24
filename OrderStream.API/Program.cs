@@ -9,8 +9,6 @@ public static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         Log.Logger = new LoggerConfiguration()
@@ -23,7 +21,6 @@ public static class Program
         {
             options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL"));
         });
-        // MongoDB ayarlarını konfigüre et
         builder.Services.Configure<MongoDBSettings>(
             builder.Configuration.GetSection("MongoDB"));
         builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
@@ -39,7 +36,6 @@ public static class Program
 
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -49,7 +45,7 @@ public static class Program
 
         app.UseHttpsRedirection();
         app.UseRouting();
-        app.MapControllers(); // Register controllers
+        app.MapControllers(); 
         app.Run();
 
     }

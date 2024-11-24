@@ -11,5 +11,4 @@ public class MongoDbContext
     }
 
     public IMongoCollection<MongoOrder> Orders => _database.GetCollection<MongoOrder>("Orders");
-    // Diğer koleksiyonlar eklenebilir
 }

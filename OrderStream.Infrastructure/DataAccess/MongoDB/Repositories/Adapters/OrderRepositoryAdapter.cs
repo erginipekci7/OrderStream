@@ -38,22 +38,6 @@ public class OrderRepositoryAdapter : IOrderRepository
 
     public async Task UpdateAsync(string id, Order order)
     {
-        // var objectId = ObjectId.Parse(id);
-
-        // var mongoOrder = new MongoOrder
-        // {
-        //     Id = objectId,
-        //     CustomerId = order.CustomerId,
-        //     OrderNumber = order.OrderNumber,
-        //     OrderDate = order.OrderDate,
-        //     Items = order.OrderItems.Select(item => new MongoOrderItem
-        //     {
-        //         ProductName = item.ProductName,
-        //         Quantity = item.Quantity,
-        //         UnitPrice = item.UnitPrice
-        //     }).ToList()
-        // };
-
         var mongoOrder = _mapper.Map<MongoOrder>(order);
 
         await _mongoRepository.UpdateAsync(id, mongoOrder);
