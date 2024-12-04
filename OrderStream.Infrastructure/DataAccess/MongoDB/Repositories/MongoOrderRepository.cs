@@ -35,9 +35,10 @@ public class MongoOrderRepository : IMongoOrderRepository
         await _orderCollection.ReplaceOneAsync(filter, order);
     }
 
-    public async Task DeleteAsync(string id)
+    public async Task<bool> DeleteAsync(string id)
     {
         var objectId = ObjectId.Parse(id);
-        await _orderCollection.DeleteOneAsync(order => order.Id == objectId);
+        var result = await _orderCollection.DeleteOneAsync(order => order.Id == objectId);
+        return result.DeletedCount > 0;
     }
 }

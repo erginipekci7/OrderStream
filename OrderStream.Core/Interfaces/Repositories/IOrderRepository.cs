@@ -4,5 +4,5 @@ public interface IOrderRepository
     Task<Order> GetByIdAsync(string id);
     Task AddAsync(Order order);
     Task UpdateAsync(string id, Order order);
-    Task DeleteAsync(string id);
+    Task<bool> DeleteAsync(string id);
 }

@@ -68,7 +68,7 @@ public class OrderService(IOrderRepository orderRepository, ILogger logger) : IO
         _logger.Information("Successfully updated order: {OrderId}", id);
     }
 
-    public async Task DeleteOrderAsync(string id)
+    public async Task<bool> DeleteOrderAsync(string id)
     {
         _logger.Information("Deleting order with ID: {OrderId}", id);
         
@@ -82,8 +82,15 @@ public class OrderService(IOrderRepository orderRepository, ILogger logger) : IO
             throw new OrderNotFoundException($"Order with ID {id} was not found");
         }
 
-        await _orderRepository.DeleteAsync(id);
+        var result = await _orderRepository.DeleteAsync(id);
+        if (!result)
+        {
+            _logger.Warning("Failed to delete order with ID: {OrderId}", id);
+            return result;
+            throw new OrderNotFoundException($"Order with ID {id} was not found");
+        }
         _logger.Information("Successfully deleted order: {OrderId}", id);
+        return result;
     }
 
     private static void ValidateOrder(Order order)

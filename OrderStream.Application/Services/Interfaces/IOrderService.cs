@@ -4,5 +4,5 @@ public interface IOrderService
     Task<Order> GetOrderByIdAsync(string id);
     Task AddOrderAsync(Order order);
     Task UpdateOrderAsync(string id, Order order);
-    Task DeleteOrderAsync(string id);
+    Task<bool> DeleteOrderAsync(string id);
 }

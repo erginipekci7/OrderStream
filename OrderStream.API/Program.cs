@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using OrderStream.Application.Services;
 using Serilog;
 
-public static class Program
+public partial class Program
 {
     public static void Main(string[] args)
     {
@@ -17,10 +17,10 @@ public static class Program
         
         builder.Host.UseSerilog();
         builder.Services.AddSingleton(Log.Logger);
-        builder.Services.AddDbContext<AppDbContext>(options => 
-        {
-            options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL"));
-        });
+        // builder.Services.AddDbContext<AppDbContext>(options => 
+        // {
+        //     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL"));
+        // });
         builder.Services.Configure<MongoDBSettings>(
             builder.Configuration.GetSection("MongoDB"));
         builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);

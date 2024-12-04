@@ -66,7 +66,11 @@ public class OrdersController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(string id)
     {
-        await _orderService.DeleteOrderAsync(id);
+        var result = await _orderService.DeleteOrderAsync(id);
+        if (!result)
+        {
+            return NotFound();
+        }
         return Ok();
     }
 }

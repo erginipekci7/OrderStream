@@ -4,5 +4,5 @@ public interface IMongoOrderRepository
     Task<MongoOrder> GetByIdAsync(string id);
     Task AddAsync(MongoOrder order);
     Task UpdateAsync(string id, MongoOrder order);
-    Task DeleteAsync(string id);
+    Task<bool> DeleteAsync(string id);
 }

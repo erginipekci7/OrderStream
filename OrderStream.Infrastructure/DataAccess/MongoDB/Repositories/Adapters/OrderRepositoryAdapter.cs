@@ -43,8 +43,8 @@ public class OrderRepositoryAdapter : IOrderRepository
         await _mongoRepository.UpdateAsync(id, mongoOrder);
     }
 
-    public async Task DeleteAsync(string id)
+    public async Task<bool> DeleteAsync(string id)
     {
-        await _mongoRepository.DeleteAsync(id);
+        return await _mongoRepository.DeleteAsync(id);
     }
 }
