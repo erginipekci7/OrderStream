@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrderStream.Core\OrderStream.Core.csproj" />
+    <ProjectReference Include="..\OrderStream.Application\OrderStream.Application.csproj" />
   </ItemGroup>
 
 </Project>
